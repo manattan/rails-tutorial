@@ -12,11 +12,14 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        puts params[:article]
         @article = Article.new(article_params)
         puts @article
-        @article.save
-        redirect_to @article
+
+        if @article.save
+            redirect_to @article
+        else
+            render 'new'
+        end
     end
 
     private
